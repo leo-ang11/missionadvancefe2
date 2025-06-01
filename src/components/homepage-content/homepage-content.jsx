@@ -39,7 +39,7 @@ const Homepage = ({getData}) => {
                             <div className="card-content" key={index}>
                                     <div className="out-top-content">
                                         <div className="content-banner">
-                                            <img src={'/src/image/' + item.imageUrl} alt="img" />
+                                            <img src={'/image/' + item.imageUrl} alt="img" />
                                         </div>
                                         <div className="box-top-content">
                                             <div className="title-desc-content">
@@ -48,7 +48,7 @@ const Homepage = ({getData}) => {
                                             </div>
                                             <div className="author-content">
                                                 <div className="author-picture">
-                                                    <img src={'/src/image/' + item.authorImg} alt="author picture" />
+                                                    <img src={'/image/' + item.authorImg} alt="author picture" />
                                                 </div>
                                                 <div className="author-name">
                                                     <p>{item.author}</p>
