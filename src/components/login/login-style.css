@@ -1,0 +1,240 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Lato", sans-serif;
+}
+
+body {
+    background-color: #fafaff;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 90;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 25px;
+    background-color: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.09);
+}
+
+header .logo img {
+    max-width: 150px;
+    width: 100%;
+    object-fit: contain;
+}
+
+.out-box-login {
+    margin-top: 6rem;
+    padding: 15px;
+    padding-top: 0;
+}
+
+.box-login {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.09);
+    max-width: 768px;
+    width: 100%;
+    margin: 0 auto;
+    -webkit-border-radius: 0.5rem;
+    -moz-border-radius: 0.5rem;
+    -ms-border-radius: 0.5rem;
+    -o-border-radius: 0.5rem;
+}
+
+.box-login form {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.box-login h1 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+    line-height: 1.52em;
+}
+
+.box-login p {
+    text-align: center;
+    color: #666;
+    margin-bottom: 1.5rem;
+    line-height: 1.52em;
+    font-size: 16px;
+}
+
+.box-login label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #666;
+    font-size: 14.5px;
+}
+
+.required-icon {
+    color: red;
+}
+
+.box-login input {
+    width: 100%;
+    padding: 12px 10px;
+    margin-bottom: 1rem;
+    font-size: 14.5px;
+    border: 1px solid #ccc;
+    overflow: hidden;
+    border-radius: 0.25rem;
+    -webkit-border-radius: 0.25rem;
+    -moz-border-radius: 0.25rem;
+    -ms-border-radius: 0.25rem;
+    -o-border-radius: 0.25rem;
+}
+
+.box-login .relative {
+    position: relative;
+    overflow: hidden;
+}
+
+.box-login .relative .i-pw {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 0px;
+    padding-right: 0;
+    width: 40px;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-75%);
+    background: #fff;
+    cursor: pointer;
+    overflow: hidden;
+    color: #161616;
+    -webkit-transform: translateY(-75%);
+    -moz-transform: translateY(-75%);
+    -ms-transform: translateY(-75%);
+    -o-transform: translateY(-75%);
+}
+
+.box-login .relative .i-pw.off {
+    display: none;
+}
+
+.box-login .relative button {
+    border: none;
+    outline: none;
+    background: none;
+}
+
+.box-login a {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 0.875rem;
+}
+
+.box-login .btn {
+    width: 100%;
+    border: none;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0.75rem;
+    text-align: center;
+}
+
+.box-login .btn:hover {
+    filter: brightness(90%);
+    -webkit-filter: brightness(90%);
+}
+
+.box-login .btn-primary {
+    background-color: #28a745;
+    color: white;
+    margin-bottom: 1rem;
+}
+
+.box-login .btn-secondary {
+    background-color: #d4edda;
+    color: #28a745;
+    margin-bottom: 1rem;
+}
+
+.box-login .forgot-pw {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.box-login .forgot-pw a {
+    font-size: 14px;
+    color: #999;
+    font-family: "Poppins", sans-serif;
+    letter-spacing: .1px;
+}
+
+.box-login .forgot-pw a:hover {
+    text-decoration: underline;
+    color: #161616;
+}
+
+.box-login .divider {
+    position: relative;
+    text-align: center;
+    margin: 1rem 0;
+    margin-bottom: 2rem;
+    color: #333;
+}
+
+.divider hr {
+    border: 1px solid rgb(128, 128, 128, 0.2);
+    width: 100%;
+}
+
+.divider p {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    background: #fff;
+    transform: translate(-50%, -60%);
+    margin-bottom: 0;
+    padding: 0 5px;
+    -webkit-transform: translate(-50%, -60%);
+    -moz-transform: translate(-50%, -60%);
+    -ms-transform: translate(-50%, -60%);
+    -o-transform: translate(-50%, -60%);
+}
+
+.box-login .btn-google {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc;
+    background-color: white;
+    color: #333;
+}
+
+#icon-google {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 5px;
+} 
+
+@media (max-width: 600px) {
+    .box-login {
+        box-shadow: none;
+    }
+}

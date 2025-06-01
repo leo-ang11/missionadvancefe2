@@ -1,0 +1,423 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Lato", sans-serif;
+}
+
+body {
+    background-color: #fafaff;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 90;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 25px;
+    background-color: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.09);
+}
+
+header .logo img {
+    max-width: 150px;
+    width: 100%;
+    object-fit: contain;
+}
+
+.out-box-signup {
+    margin-top: 7rem;
+    padding: 15px;
+    padding-top: 0;
+}
+
+.box-signup {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.09);
+    max-width: 768px;
+    width: 100%;
+    margin: 0 auto;
+    -webkit-border-radius: 0.5rem;
+    -moz-border-radius: 0.5rem;
+    -ms-border-radius: 0.5rem;
+    -o-border-radius: 0.5rem;
+}
+
+.box-signup form {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.box-signup h1 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+    line-height: 1.52em;
+}
+
+.box-signup p {
+    text-align: center;
+    color: #666;
+    margin-bottom: 1.5rem;
+    line-height: 1.52em;
+    font-size: 16px;
+}
+
+.box-signup label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #666;
+    font-size: 14.5px;
+}
+
+.required-icon {
+    color: red;
+}
+
+.box-input-number {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.box-input-number #phone-number {
+    margin-bottom: 0;
+}
+
+.box-countryid {
+    position: relative;
+    width: fit-content;
+    margin-right: 11px;
+}
+
+.countryid {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    padding: 10px;
+    padding-right: 0;
+    border-radius: 0.25rem;
+    -webkit-border-radius: 0.25rem;
+    -moz-border-radius: 0.25rem;
+    -ms-border-radius: 0.25rem;
+    -o-border-radius: 0.25rem;
+}
+
+.countryid p {
+    margin-bottom: 0;
+    font-size: 14.5px;
+    color: #161616;
+}
+
+.countryid:hover {
+    background-color: rgb(128, 128, 128, 0.09);
+}
+
+#icon-chevron {
+    display: flex;
+    width: 32px;
+    align-items: center;
+    justify-content: center;
+    margin-left: 5px;
+    color: #161616;
+    transition: .2s all;
+    -webkit-transition: .2s all;
+    -moz-transition: .2s all;
+    -ms-transition: .2s all;
+    -o-transition: .2s all;
+}
+
+.rotate {
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transition: .2s all;
+    -webkit-transition: .2s all;
+    -moz-transition: .2s all;
+    -ms-transition: .2s all;
+    -o-transition: .2s all;
+}
+
+.option-list-number {
+    position: absolute;
+    display: block;
+    top: 3rem;
+    z-index: 100;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    overflow: hidden;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+}
+
+.option-list-number p {
+    margin: 0;
+    text-align: left;
+    padding: 10px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 14px;
+    background-color: #fff;
+    border-bottom: 1px solid rgb(128, 128, 128, 0.2);
+}
+
+.option-list-number p:hover {
+    filter: brightness(95%);
+    -webkit-filter: brightness(95%);
+}
+
+.box-signup input {
+    width: 100%;
+    padding: 12px 10px;
+    margin-bottom: 1rem;
+    font-size: 14.5px;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+    -webkit-border-radius: 0.25rem;
+    -moz-border-radius: 0.25rem;
+    -ms-border-radius: 0.25rem;
+    -o-border-radius: 0.25rem;
+}
+
+.box-signup .relative {
+    position: relative;
+}
+
+.box-signup .relative .i-pw,
+.box-signup .relative .i-pw-confirm {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 0px;
+    padding-right: 0;
+    width: 40px;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-75%);
+    background: #fff;
+    cursor: pointer;
+    color: #161616;
+    -webkit-transform: translateY(-75%);
+    -moz-transform: translateY(-75%);
+    -ms-transform: translateY(-75%);
+    -o-transform: translateY(-75%);
+}
+
+.box-signup .relative .i-pw.off,
+.box-signup .relative .i-pw-confirm.off {
+    display: none;
+}
+
+.box-signup .relative button {
+    border: none;
+    outline: none;
+    background: none;
+}
+
+#error-pw-notif {
+    text-align: left;
+    margin: 0;
+    margin-top: -1rem;
+    font-size: 14px;
+    color: red;
+    line-height: 1.52em;
+    display: none;
+}
+
+.box-signup a {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 0.875rem;
+}
+
+.box-signup .btn {
+    width: 100%;
+    border: none;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0.75rem;
+    text-align: center;
+}
+
+.box-signup .btn:hover {
+    filter: brightness(90%);
+    -webkit-filter: brightness(90%);
+}
+
+.box-signup .btn-primary {
+    background-color: #28a745;
+    color: white;
+    margin-bottom: 1rem;
+}
+
+.box-signup .btn-secondary {
+    background-color: #d4edda;
+    color: #28a745;
+    margin-bottom: 1rem;
+}
+
+.box-signup .forgot-pw {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.box-signup .forgot-pw a {
+    font-size: 14px;
+    color: #999;
+    font-family: "Poppins", sans-serif;
+    letter-spacing: .1px;
+}
+
+.box-signup .forgot-pw a:hover {
+    text-decoration: underline;
+    color: #161616;
+}
+
+.box-signup .divider {
+    position: relative;
+    text-align: center;
+    margin: 1rem 0;
+    margin-bottom: 2rem;
+    color: #333;
+}
+
+.divider hr {
+    border: 1px solid rgb(128, 128, 128, 0.2);
+    width: 100%;
+}
+
+.divider p {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    background: #fff;
+    transform: translate(-50%, -60%);
+    margin-bottom: 0;
+    padding: 0 5px;
+    -webkit-transform: translate(-50%, -60%);
+    -moz-transform: translate(-50%, -60%);
+    -ms-transform: translate(-50%, -60%);
+    -o-transform: translate(-50%, -60%);
+}
+
+.box-signup .btn-google {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc;
+    background-color: white;
+    color: #333;
+}
+
+#icon-google {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 5px;
+} 
+
+.user-img img {
+    width: 50px;
+    object-fit: cover;
+    cursor: pointer;
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+}
+
+.user-category {
+    font-size: 14.5px;
+    letter-spacing: .2px;
+    color: #333;
+}
+
+.box-option {
+    position: relative;
+}
+
+.list-box-set-option.active {
+    display: block;
+}
+
+.list-box-set-option {
+    position: absolute;
+    top: 3.5rem;
+    right: 0;
+    width: 120px;
+    display: none;
+}
+
+.list-box-set-option .card-option {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -ms-border-radius: 6px;
+    -o-border-radius: 6px;
+    z-index: 100;
+}
+
+.list-box-set-option .card-option a,
+.list-box-set-option .card-option button {
+    padding: 8px 10px;
+    text-align: left;
+    width: 100%;
+    font-weight: normal;
+    font-size: 14.5px;
+    font-family: "Poppins", sans-serif;
+    text-decoration: none;
+    color: rgb(128, 128, 128);
+    background-color: #fff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.list-box-set-option .card-option a:hover,
+.list-box-set-option .card-option button:hover {
+    color: #161616;
+    filter: brightness(90%);
+    -webkit-filter: brightness(90%);
+}
+
+@media(max-width: 600px) {
+    .box-signup {
+        box-shadow: none;
+    }
+
+    .list-box-set-option.active {
+        display: none;
+    }
+}

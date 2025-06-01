@@ -1,0 +1,144 @@
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 90;
+    width: 100%;
+    padding: 25px 1rem;
+    background-color: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.09);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+header .logo img {
+    max-width: 150px;
+    width: 100%;
+    object-fit: contain;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.option a {
+    text-decoration: none;
+    font-size: 14.5px;
+    font-family: var(--font-poppins);
+    letter-spacing: .2px;
+    padding: 10px 14px;
+    overflow: hidden;
+    background-color: #d4edda;
+    color: #28a745;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+}
+
+.option a:nth-child(2) {
+    background-color: #28a745;
+    color: white;
+}
+
+.option a:hover {
+    filter: brightness(95%);
+    -webkit-filter: brightness(95%);
+}
+
+.option-mobile {
+    display: none;
+    position: relative;
+}
+
+.option-mobile span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    color: #666;
+    cursor: pointer;
+}
+
+.option-mobile span:hover {
+    background: rgb(0, 0, 0, 0.09);
+}
+
+.list-option-mobile.active {
+    right: 0;
+    transition: .2s all;
+    -webkit-transition: .2s all;
+    -moz-transition: .2s all;
+    -ms-transition: .2s all;
+    -o-transition: .2s all;
+}
+
+.list-option-mobile {
+    position: fixed;
+    display: block;
+    top: 0;
+    right: -100rem;
+    width: 100%;
+    height: 100%;
+    background-color: #fafaff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.09);
+    z-index: 101;
+    padding: 10px 0;
+    transition: .3s all;
+    -webkit-transition: .3s all;
+    -moz-transition: .3s all;
+    -ms-transition: .3s all;
+    -o-transition: .3s all;
+}
+
+.card-top-opt-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+.logo-option img {
+    max-width: 150px;
+    width: 100%;
+    object-fit: contain;
+}
+
+.list-content-option-mobile {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+}
+
+.list-content-option-mobile a {
+    border-bottom: 1px solid rgb(128, 128, 128, 0.2);
+    padding: 15px;
+    text-decoration: none;
+    color: #666;
+}
+
+.list-content-option-mobile a:hover {
+    background-color: rgb(128, 128, 128, 0.2);
+    color: #161616;
+}
+
+@media(max-width: 600px) {
+    .option {
+        display: none;
+    }
+
+    .option-mobile {
+        display: flex;
+    }
+}
