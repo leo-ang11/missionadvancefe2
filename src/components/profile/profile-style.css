@@ -61,6 +61,7 @@ body {
 .card-btn-detail {
     display: flex;
     justify-content: flex-end;
+    gap: 11px;
     margin-top: 1rem;
 }
 
@@ -79,6 +80,10 @@ body {
     font-size: 14.5px;
     font-family: "Poppins", sans-serif;
     letter-spacing: .2px;
+}
+
+#btn-logout {
+    background-color: #ff8104;
 }
 
 .card-btn-detail button:hover {

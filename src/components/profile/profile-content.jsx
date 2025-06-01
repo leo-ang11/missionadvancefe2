@@ -10,6 +10,12 @@ const Profile = () => {
         navigate('/login');
     };
 
+    const deleteAccount = () => {
+        localStorage.removeItem('users');
+        localStorage.removeItem('currentUser');
+        navigate('/login');
+    };
+
     const [user, setUser] = useState(null);
     const navigate = useNavigate();
 
@@ -42,7 +48,8 @@ const Profile = () => {
                             <span>{user.phone}</span>
                         </div>
                         <div className="card-btn-detail">
-                            <button type="button" onClick={logout}>Logout</button>
+                            <button type="button" onClick={deleteAccount}>Delete Account</button>
+                            <button type="button" id="btn-logout" onClick={logout}>Logout</button>
                         </div>
                     </>
                 : ""} 
