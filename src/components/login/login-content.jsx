@@ -12,6 +12,10 @@ const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
 
+    const homepageButton = () => {
+        window.location.href = '/'
+    }
+
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
@@ -46,7 +50,7 @@ const Login = () => {
         <div className="container">
             <header>
                 <div className="logo">
-                    <img src={logo} alt="logo" />
+                    <img src={logo} onClick={homepageButton} alt="logo" />
                 </div>
             </header>
             <div className="out-box-login">
