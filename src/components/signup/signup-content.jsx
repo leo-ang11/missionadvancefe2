@@ -2,21 +2,25 @@ import logo from '../../image/mission3-login-logo.png';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router';
+import { getusers, processsignup } from '../../api/authApi';
 import './signup-style.css'
 
 const Signup = () => {
-    const [password, setPassword] = useState(false);
-    const [Confirmpassword, setConfirmPassword] = useState(false);
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [Confirmpassword, setConfirmPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [countryNumber, setCountryNumber] = useState(false);
     const [number, setNumber] = useState('+62');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [fullPhoneNumber, setFullPhoneNumber] = useState('');
 
-    const handleClick = (value) => {
+    const handleCountryNumber = (value) => {
         setNumber(value);
         setCountryNumber(false);
         setFullPhoneNumber('');
-        setCountryNumber('');
         setPhoneNumber('');
     };
 
@@ -24,33 +28,59 @@ const Signup = () => {
         const newPhoneNumber = event.target.value;
         setPhoneNumber(newPhoneNumber);
         setFullPhoneNumber(number + newPhoneNumber);
-        setUser({ ...user, phone: number + newPhoneNumber});
     };
 
     const homepageButton = () => {
         window.location.href = '/'
     }
 
-    const [user, setUser] = useState({ username: '', email: '', phone: '', password: '' });
     const navigate = useNavigate();
 
-    const handleSignup = (e) => {
+    const handleSignup = async (e) => {
         e.preventDefault();
-        const users = JSON.parse(localStorage.getItem('users')) || [];
-        const userExists = users.find(u => u.email === user.email);
-        const cekpassword = user.password === Confirmpassword
-        if (userExists) {
-        alert('User already exists!');
-        return;
+
+        if (!email || !password || !name || !fullPhoneNumber) {
+            alert('Semua field harus diisi!');
+            return;
         }
-        if (!cekpassword) {
-        alert('Password and Confirm Password do not match!');
-        return;
+
+        if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+            alert('Email tidak valid!');
+            return;
         }
-        users.push(user);
-        localStorage.setItem('users', JSON.stringify(users));
-        alert('Signup successful!');
-        navigate('/login');
+
+        if (!/^\d+$/.test(phoneNumber)) {
+            alert('Nomor telepon harus berupa angka!');
+            return;
+        }
+
+        if (password.length < 6) {
+            alert('Password minimal 6 karakter');
+            return;
+        }
+
+        if (password !== Confirmpassword) {
+            alert('Password tidak sama!');
+            return;
+        }
+
+        try {
+            const allUsers = await getusers();
+            const emailExists = allUsers.data.some((u) => u.email === email);
+
+            if (emailExists) {
+                alert('Email sudah terdaftar!');
+                return;
+            }
+
+            await processsignup(email, password, name, fullPhoneNumber);
+            alert('Signup berhasil!');
+            navigate('/login');
+
+        } catch (err) {
+            console.error(err);
+            alert('Signup gagal: ' + err.message);
+        }
     };
 
     return (
@@ -68,11 +98,11 @@ const Signup = () => {
 
                         <div className="form-group">
                             <label htmlFor="username">Nama Lengkap <span className="required-icon">*</span></label>
-                            <input type="text" id="username" required onChange={(e) => setUser({...user, username: e.target.value})} />
+                            <input type="text" id="username" required onChange={(e) => setName(e.target.value)} />
                         </div>
                         <div className="form-group">
                             <label htmlFor="email">E-Mail <span className="required-icon">*</span></label>
-                            <input type="email" id="email" required onChange={(e) => setUser({...user, email: e.target.value})} />
+                            <input type="email" id="email" required onChange={(e) => setEmail(e.target.value)} />
                         </div>
                         <div className="out-country-card-number">
                             <label htmlFor="phone-number">No. Hp <span className="text-red-500">*</span></label>
@@ -88,22 +118,21 @@ const Signup = () => {
                                     </div>
                                     {countryNumber ? (
                                         <div className="option-list-number">
-                                            <p onClick={() => handleClick('+62')}>+62</p>
-                                            <p onClick={() => handleClick('+65')}>+65</p>
+                                            <p onClick={() => handleCountryNumber('+62')}>+62</p>
+                                            <p onClick={() => handleCountryNumber('+65')}>+65</p>
                                         </div>
                                     ) : (
                                         <div></div>
                                     )}
                                 </div>
                                 <input type="tel" name="phone-number" id="phone-number" required value={phoneNumber} onChange={handlePhoneNumberChange} />
-                                <input type="hidden" name="add-number" id="number-detail" value={fullPhoneNumber} />
                             </div>
                         </div>
                         <label htmlFor="password-create">Kata Sandi <span className="required-icon">*</span></label>
                         <div className="relative">
-                            <input type={password ? 'text' : 'password'} id="password-create" required onChange={(e) => setUser({...user, password: e.target.value})} />
-                            <button type='button' onClick={() => setPassword(!password)}>
-                                {password ? (
+                            <input type={showPassword ? 'text' : 'password'} id="password-create" required onChange={(e) => setPassword(e.target.value)} />
+                            <button type='button' onClick={() => setShowPassword(!showPassword)}>
+                                {showPassword ? (
                                     <span className="i-pw">
                                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M2.89899 12.7346C2.80091 12.5052 2.75 12.2542 2.75 12C2.75 11.7458 2.80091 11.4948 2.89899 11.2654C3.70725 9.34502 4.99868 7.72989 6.61515 6.61781C8.23161 5.50574 10.1029 4.945 12 5.00426C13.8971 4.945 15.7684 5.50574 17.3849 6.61781C19.0013 7.72989 20.2928 9.34502 21.101 11.2654C21.1991 11.4948 21.25 11.7458 21.25 12C21.25 12.2542 21.1991 12.5052 21.101 12.7346C20.2928 14.655 19.0013 16.2701 17.3849 17.3822C15.7684 18.4943 13.8971 19.055 12 18.9957C10.1029 19.055 8.23161 18.4943 6.61515 17.3822C4.99868 16.2701 3.70725 14.655 2.89899 12.7346Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -125,9 +154,9 @@ const Signup = () => {
                         </div>
                         <label htmlFor="password-confirm">Konfirmasi Kata Sandi <span className="required-icon">*</span></label>
                         <div className="relative">
-                            <input type={Confirmpassword ? 'text' : 'password'} id="password-confirm" required onChange={(e) => setConfirmPassword(e.target.value)} />
-                            <button type='button' onClick={() => setConfirmPassword(!Confirmpassword)} >
-                                {Confirmpassword ? (
+                            <input type={showConfirmPassword ? 'text' : 'password'} id="password-confirm" required onChange={(e) => setConfirmPassword(e.target.value)} />
+                            <button type='button' onClick={() => setShowConfirmPassword(!showConfirmPassword)} >
+                                {showConfirmPassword ? (
                                     <span className="i-pw-confirm">
                                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M2.89899 12.7346C2.80091 12.5052 2.75 12.2542 2.75 12C2.75 11.7458 2.80091 11.4948 2.89899 11.2654C3.70725 9.34502 4.99868 7.72989 6.61515 6.61781C8.23161 5.50574 10.1029 4.945 12 5.00426C13.8971 4.945 15.7684 5.50574 17.3849 6.61781C19.0013 7.72989 20.2928 9.34502 21.101 11.2654C21.1991 11.4948 21.25 11.7458 21.25 12C21.25 12.2542 21.1991 12.5052 21.101 12.7346C20.2928 14.655 19.0013 16.2701 17.3849 17.3822C15.7684 18.4943 13.8971 19.055 12 18.9957C10.1029 19.055 8.23161 18.4943 6.61515 17.3822C4.99868 16.2701 3.70725 14.655 2.89899 12.7346Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />

@@ -58,6 +58,24 @@ body {
     margin-bottom: 5px;
 }
 
+.card-detail input {
+    padding: 10px;
+    border: none;
+    outline: none;
+    font-size: 14.5px;
+    font-family: "Poppins", sans-serif;
+    background: #fff;
+    max-width: 300px;
+    width: 100%;
+    outline: 1px solid rgba(128, 128, 128, 0.2);
+    overflow: hidden;
+    border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -ms-border-radius: 6px;
+    -o-border-radius: 6px;
+}
+
 .card-btn-detail {
     display: flex;
     justify-content: flex-end;
@@ -66,7 +84,6 @@ body {
 }
 
 .card-btn-detail button {
-    background-color: red;
     color: #fff;
     padding: 10px 20px;
     border-radius: 6px;
@@ -82,8 +99,24 @@ body {
     letter-spacing: .2px;
 }
 
+#btn-update {
+    background-color: #16a6f4;
+}
+
+#btn-cancel {
+    background-color: rgba(128, 128, 128);
+}
+
+#btn-delete {
+    background-color: #ff0000;
+}
+
 #btn-logout {
     background-color: #ff8104;
+}
+
+#btn-edit {
+    background-color: #16a6f4;
 }
 
 .card-btn-detail button:hover {

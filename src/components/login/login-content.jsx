@@ -3,23 +3,34 @@ import { useState } from 'react';
 import { Link } from 'react-router';
 import { useNavigate } from 'react-router';
 import { useEffect } from 'react';
+import { processlogin } from '../../api/authApi';
 import './login-style.css'
 
 const Login = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
-
-    const [loginData, setLoginData] = useState({ email: '', password: '' });
     const navigate = useNavigate();
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
-        const users = JSON.parse(localStorage.getItem('users')) || [];
-        const user = users.find(u => u.email === loginData.email && u.password === loginData.password);
-        if (user) {
-        localStorage.setItem('currentUser', JSON.stringify(user));
-        navigate('/');
-        } else {
-        alert('E-Mail Or Password Incorrect!');
+        try {
+            const result = await processlogin(email, password);
+
+            if (result.error) {
+                alert(result.error);
+                return;
+            }
+
+            if (result.user) {
+                localStorage.setItem('currentUser', JSON.stringify({ email: result.user.email }));
+                alert('Login berhasil!');
+                navigate('/');
+            }
+
+        } catch (err) {
+            console.error(err);
+            alert('Terjadi kesalahan saat login');
         }
     };
 
@@ -45,12 +56,22 @@ const Login = () => {
                         <p>Yuk, lanjutin belajarmu di videobelajar.</p>
                         <div className="form-group">
                             <label htmlFor="email">E-Mail <span className="required-icon">*</span></label>
-                            <input type="email" id="email" required onChange={(e) => setLoginData({...loginData, email: e.target.value})} />
+                            <input
+                            type="email"
+                            id="email"
+                            required
+                            onChange= {(e) => setEmail(e.target.value) }
+                            />
                         </div>
                         <div className="form-group">
                             <label htmlFor="password">Kata Sandi <span className="required-icon">*</span></label>
                             <div className="relative">
-                                <input type={showPassword ? 'text' : 'password'} id="password" required onChange={(e) => setLoginData({...loginData, password: e.target.value})} />
+                                <input
+                                type={showPassword ? 'text' : 'password'}
+                                id="password"
+                                required
+                                onChange={(e) => setPassword(e.target.value)}
+                                />
                                 <button
                                     type="button"
                                     onClick={() => setShowPassword(!showPassword)}
