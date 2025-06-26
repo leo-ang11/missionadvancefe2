@@ -119,6 +119,10 @@ body {
     background-color: #16a6f4;
 }
 
+#btn-list {
+    background-color: #28a745;
+}
+
 .card-btn-detail button:hover {
     filter: brightness(90%);
     -webkit-filter: brightness(90%);
