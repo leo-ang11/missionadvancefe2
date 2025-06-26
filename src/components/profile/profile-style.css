@@ -78,8 +78,10 @@ body {
 
 .card-btn-detail {
     display: flex;
+    align-items: center;
+    gap: 1rem;
     justify-content: flex-end;
-    gap: 11px;
+    flex-wrap: wrap;
     margin-top: 1rem;
 }
 
@@ -87,6 +89,7 @@ body {
     color: #fff;
     padding: 10px 20px;
     border-radius: 6px;
+    white-space: nowrap;
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
     -ms-border-radius: 6px;
